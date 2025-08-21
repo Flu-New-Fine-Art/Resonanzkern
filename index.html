@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kühlhaus Berlin – Werk: Resonanzkern</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #111; background: #fff; }
+    .wrap { max-width: 700px; margin: 40px auto; padding: 0 20px; text-align: center; }
+    .logo { max-width: 220px; height: auto; margin: 0 auto 16px; display: block; }
+    h1 { font-size: 28px; margin: 0 0 6px; }
+    h2 { font-size: 22px; margin: 8px 0 18px; }
+    p  { font-size: 16px; line-height: 1.55; margin: 10px 0; }
+    .note { font-weight: 600; color: #b00020; margin-top: 12px; }
+    audio { width: 100%; max-width: 480px; margin: 16px auto; display: block; }
+    footer { margin-top: 28px; font-size: 14px; color: #666; }
+    footer a { color: inherit; text-decoration: none; border-bottom: 1px solid #bbb; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- Logo (optional). Blendet sich aus, wenn logo.png nicht vorhanden ist -->
+    <img class="logo" src="logo.png" alt="Flu – New Fine Art Logo" onerror="this.style.display='none'">
 
+    <h1>Kühlhaus Berlin</h1>
+    <h2>Werk: Resonanzkern</h2>
+
+    <p>Wähle die Audiofassung, um die Werkbeschreibung anzuhören.</p>
+    <p class="note">Bitte Kopfhörer verwenden oder die Lautstärke so wählen, dass andere Besucher nicht gestört werden.</p>
+
+    <!-- MP3 muss im Repo liegen und genau so heißen -->
+    <audio controls>
+      <source src="resonanzkern.mp3" type="audio/mpeg">
+      Dein Browser unterstützt das Audio-Element nicht.
+    </audio>
+
+    <footer>
+      <p><a href="https://www.flu.ruhr" target="_blank" rel="noopener">www.flu.ruhr</a></p>
+    </footer>
+  </main>
+</body>
+</html>
