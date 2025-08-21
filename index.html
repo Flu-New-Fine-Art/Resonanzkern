@@ -7,39 +7,45 @@
   <style>
     :root{
       --fg:#111; --muted:#666; --rule:#e9e9e9; --danger:#b00020; --accent:#c5ad86;
+      --overlay: rgba(0,0,0,.6); --modal-bg:#fff;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:#fff;color:var(--fg);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
 
     .page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-bottom:80px}
-
-    .wrap{width:100%;max-width:720px;padding:8px 12px 0;
-      display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+    .wrap{width:100%;max-width:720px;padding:8px 12px 0;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
 
     .top-logo{max-width:90px;height:auto;margin-bottom:6px}
-
     h1{font-weight:800;font-size:clamp(18px,5vw,22px);margin:2px 0}
+    .sub{font-size:clamp(12px,3.6vw,14px);color:#444;font-weight:500}
     h2{margin:0;font-size:clamp(13px,4vw,15px);color:#333;font-style:italic;font-weight:600}
     p{margin:4px 0;font-size:clamp(12px,3.8vw,14px);line-height:1.3}
     .note{color:var(--danger);font-weight:700;font-size:12px}
 
     .actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:100%}
-    .btn{flex:1;min-width:120px;max-width:160px;padding:6px 10px;
-      border:2px solid var(--fg);border-radius:10px;text-decoration:none;
-      color:var(--fg);background:#fff;font-size:13px}
+    .btn{flex:1;min-width:120px;max-width:160px;padding:6px 10px;border:2px solid var(--fg);border-radius:10px;
+      text-decoration:none;color:var(--fg);background:#fff;font-size:13px}
     .btn:hover{background:#f7f5f1;border-color:var(--accent)}
+    .btn-ghost{background:#fff}
 
-    .player-card{width:100%;max-width:420px;background:#fafafa;
-      border:1px solid var(--rule);border-radius:10px;padding:3px 5px}
+    .player-card{width:100%;max-width:420px;background:#fafafa;border:1px solid var(--rule);border-radius:10px;padding:3px 5px}
     audio{width:100%}
 
-    /* --- Fixierter Footer --- */
-    .footer{position:fixed;bottom:0;left:0;right:0;
-      background:#fff;border-top:1px solid var(--rule);
+    .footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--rule);
       text-align:center;padding:5px;color:var(--muted);line-height:1.3}
     .brand{font-weight:700;font-size:12px}
     .brand a{color:inherit;text-decoration:none;border-bottom:1px solid #aaa}
+
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:var(--overlay);z-index:9999;padding:16px}
+    .modal.open{display:flex}
+    .dialog{width:min(100%,980px);height:min(100%,84vh);background:var(--modal-bg);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden}
+    .dialog-hd{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid var(--rule)}
+    .dialog-ttl{font-weight:700}
+    .dialog-actions{display:flex;gap:8px}
+    .m-btn{appearance:none;border:2px solid #111;background:#fff;border-radius:10px;padding:6px 10px;font-size:14px;cursor:pointer}
+    .m-btn:hover{background:#f7f5f1;border-color:var(--accent)}
+    .frame{width:100%;height:calc(100% - 42px);border:0}
   </style>
 </head>
 <body>
@@ -48,16 +54,18 @@
       <img class="top-logo" src="Logo.jpg" alt="Flu Logo" onerror="this.style.display='none'">
 
       <h1>Kühlhaus Berlin</h1>
+      <div class="sub">Crossing Cultures · 03.10.25 – 05.10.25</div>
       <h2>Resonanzkern – ein Werk aus der Werkserie „Was bleibt“</h2>
 
       <div class="actions">
         <a class="btn" href="Resonanzkern.mp3" target="_blank" rel="noopener">🎧 Audio</a>
-        <a class="btn" href="Resonanzkern.pdf" target="_blank" rel="noopener">📄 PDF</a>
+        <button class="btn btn-ghost" id="openPdf" type="button">📄 PDF anzeigen</button>
       </div>
 
       <div class="player-card">
-        <audio controls preload="metadata">
+        <audio controls preload="metadata" aria-label="Audiobeschreibung zum Werk Resonanzkern">
           <source src="Resonanzkern.mp3" type="audio/mpeg">
+          Dein Browser unterstützt das Audio-Element nicht.
         </audio>
       </div>
 
@@ -69,5 +77,29 @@
     <div class="brand"><a href="https://www.flu.ruhr" target="_blank" rel="noopener">www.flu.ruhr</a></div>
     <div>© 2025 Flu – New Fine Art</div>
   </footer>
+
+  <div class="modal" id="pdfModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="PDF-Ansicht">
+    <div class="dialog">
+      <div class="dialog-hd">
+        <div class="dialog-ttl">PDF: Resonanzkern</div>
+        <div class="dialog-actions">
+          <a class="m-btn" href="Resonanzkern.pdf" target="_blank" rel="noopener">In neuem Tab</a>
+          <button class="m-btn" id="closePdf" type="button">Schließen</button>
+        </div>
+      </div>
+      <iframe class="frame" src="Resonanzkern.pdf#toolbar=1&view=FitH"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('pdfModal');
+    document.getElementById('openPdf').addEventListener('click', () => {
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    });
+    document.getElementById('closePdf').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  </script>
 </body>
 </html>
