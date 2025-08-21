@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kühlhaus Berlin – Werk: Resonanzkern</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resonanzkern – Flu New Fine Art</title>
   <style>
-    body{font-family:sans-serif;margin:0;padding:0;text-align:center;color:#111}
-    .wrap{max-width:640px;margin:40px auto;padding:20px}
-    img{max-width:200px;height:auto;margin-bottom:20px}
-    h1{margin:0;font-size:28px}
-    h2{margin:10px 0 20px;font-size:22px}
-    p{font-size:16px;line-height:1.55;margin:8px 0}
-    .btn{display:block;margin:12px auto;padding:14px 18px;max-width:400px;border:2px solid #111;
-         border-radius:10px;text-decoration:none;color:#111}
-    footer{margin-top:30px;font-size:14px;color:#666}
-    footer a{color:inherit}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #222;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    header img {
+      max-height: 80px;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    audio {
+      width: 100%;
+      max-width: 420px;
+      margin-top: 20px;
+    }
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <img src="logo.png" alt="Flu – New Fine Art Logo" />
-    <h1>Kühlhaus Berlin</h1>
-    <h2>Werk: Resonanzkern</h2>
-    <p>Wähle zwischen Audio und PDF.</p>
-    <p><strong>🎧 Bitte Kopfhörer verwenden – oder die Lautstärke so wählen, dass andere Besucher nicht gestört werden.</strong></p>
+  <header>
+    <!-- Logo einfügen, wenn vorhanden -->
+    <img src="logo.png" alt="Flu New Fine Art Logo">
+    <h1>Resonanzkern</h1>
+  </header>
 
-    <!-- Google-Drive: „Jeder mit dem Link: Betrachter“ -->
-    <a class="btn" href="https://drive.google.com/uc?export=preview&id=1NxzNg51nFOJzhgnUYIpc85zECGWA1WOg" target="_blank" rel="noopener">🎧 Audio abspielen</a>
-    <a class="btn" href="https://drive.google.com/uc?export=preview&id=1hRaPcf5MMoWUJBaEHYqL3QWJR7mzMyQQ" target="_blank" rel="noopener">📄 PDF lesen</a>
+  <main>
+    <p>Ein Projekt von Flu (Ulf Obermann-Löwenstein)<br>
+    Zwischen Struktur und Stille</p>
 
-    <footer><p><a href="https://www.flu.ruhr" target="_blank" rel="noopener">www.flu.ruhr</a></p></footer>
-  </div>
+    <!-- MP3-Player -->
+    <audio controls>
+      <source src="resonanzkern.mp3" type="audio/mpeg">
+      Dein Browser unterstützt das Audio-Element nicht.
+    </audio>
+  </main>
+
+  <footer>
+    &copy; 2025 Flu – www.flu.ruhr
+  </footer>
 </body>
 </html>
