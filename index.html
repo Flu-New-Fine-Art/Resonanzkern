@@ -7,44 +7,39 @@
   <style>
     :root{
       --fg:#111; --muted:#666; --border:#111; --danger:#b00020;
-      --rule:#e9e9e9; --hover:#f7f5f1; --card:#fafafa; --focus:#4c9ffe; --accent:#c5ad86;
+      --rule:#e9e9e9; --hover:#f7f5f1; --card:#fafafa; --accent:#c5ad86;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:#fff;color:var(--fg);
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:#fff;color:var(--fg);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
 
-    .page{min-height:100vh;display:flex;flex-direction:column;align-items:center}
-    .wrap{flex:1 0 auto;width:100%;max-width:720px;padding:8px 10px 0;
+    .page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-bottom:70px}
+
+    .wrap{width:100%;max-width:720px;padding:8px 12px 0;
       display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
 
-    .top-logo{max-width:100px;height:auto;margin-bottom:4px}
+    .top-logo{max-width:90px;height:auto;margin-bottom:6px}
 
-    h1{font-weight:800;margin:4px 0 0;font-size:clamp(18px,5vw,24px)}
-    h2{margin:0;font-size:clamp(13px,4vw,16px);color:#333;font-style:italic;font-weight:600}
-    p{margin:4px 0;font-size:clamp(13px,3.8vw,15px);line-height:1.3}
-    .note{color:var(--danger);font-weight:700}
+    h1{font-weight:800;font-size:clamp(18px,5vw,22px);margin:2px 0}
+    h2{margin:0;font-size:clamp(13px,4vw,15px);color:#333;font-style:italic;font-weight:600}
+    p{margin:4px 0;font-size:clamp(12px,3.8vw,14px);line-height:1.3}
+    .note{color:var(--danger);font-weight:700;font-size:12px}
 
     .actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:100%}
-    .btn{display:inline-block;width:min(100%,320px);padding:8px 12px;
+    .btn{flex:1;min-width:120px;max-width:160px;padding:6px 10px;
       border:2px solid var(--border);border-radius:10px;text-decoration:none;
-      color:var(--fg);background:#fff;font-size:clamp(13px,3.8vw,15px)}
+      color:var(--fg);background:#fff;font-size:13px}
     .btn:hover{background:var(--hover);border-color:var(--accent)}
 
-    .player-card{width:100%;max-width:460px;background:var(--card);
-      border:1px solid var(--rule);border-radius:10px;padding:4px 6px}
+    .player-card{width:100%;max-width:420px;background:var(--card);
+      border:1px solid var(--rule);border-radius:10px;padding:3px 5px}
     audio{width:100%}
 
-    .footer{flex:0 0 auto;width:100%;max-width:720px;padding:6px 8px 10px;
-      border-top:1px solid var(--rule);text-align:center;color:var(--muted);
-      font-size:12px;line-height:1.3}
-    .brand{font-weight:700;font-size:13px}
+    .footer{position:fixed;bottom:0;left:0;right:0;
+      background:#fff;border-top:1px solid var(--rule);
+      text-align:center;padding:4px 6px;color:var(--muted);line-height:1.2}
+    .brand{font-weight:700;font-size:12px}
     .brand a{color:inherit;text-decoration:none;border-bottom:1px solid #aaa}
-
-    @media(max-height:700px){
-      .top-logo{max-width:80px}
-      .btn{padding:6px 10px}
-      .note{font-size:12px}
-    }
   </style>
 </head>
 <body>
@@ -56,8 +51,8 @@
       <h2>Resonanzkern – ein Werk aus der Werkserie „Was bleibt“</h2>
 
       <div class="actions">
-        <a class="btn" href="Resonanzkern.mp3" target="_blank" rel="noopener">🎧 Audio in neuem Tab</a>
-        <a class="btn" href="Resonanzkern.pdf" target="_blank" rel="noopener">📄 PDF öffnen</a>
+        <a class="btn" href="Resonanzkern.mp3" target="_blank" rel="noopener">🎧 Audio</a>
+        <a class="btn" href="Resonanzkern.pdf" target="_blank" rel="noopener">📄 PDF</a>
       </div>
 
       <div class="player-card">
@@ -68,11 +63,11 @@
 
       <p class="note">Bitte Kopfhörer verwenden oder die Lautstärke so wählen,<br> dass andere Besucher nicht gestört werden.</p>
     </main>
-
-    <footer class="footer">
-      <div class="brand"><a href="https://www.flu.ruhr" target="_blank" rel="noopener">www.flu.ruhr</a></div>
-      <div>© 2025 Flu – New Fine Art</div>
-    </footer>
   </div>
+
+  <footer class="footer">
+    <div class="brand"><a href="https://www.flu.ruhr" target="_blank" rel="noopener">www.flu.ruhr</a></div>
+    <div>© 2025 Flu – New Fine Art</div>
+  </footer>
 </body>
 </html>
